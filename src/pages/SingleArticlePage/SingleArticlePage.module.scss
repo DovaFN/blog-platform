@@ -1,0 +1,57 @@
+@import 'inter-ui/inter.css';
+
+.container {
+  display: grid;
+  grid-template-rows: min-content 643px;
+  width: 938px;
+  position: relative;
+  margin: 26px auto;
+  height: 807px;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.5);
+
+  * {
+    font-family: 'Inter', 'system-ui';
+  }
+}
+
+.body {
+  padding: 0 15px;
+  padding-bottom: 24px;
+  border-radius: 5px;
+  max-width: 938px;
+  color: rgba(0, 0, 0);
+  overflow: hidden;
+  overflow-wrap: break-word;
+  li {
+    margin-left: 15px;
+  }
+}
+
+.edit {
+  position: absolute;
+  right: 14px;
+  top: 91px;
+  width: 65px;
+  height: 31px;
+  color: #52c41a;
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.delete {
+  position: absolute;
+  right: 91px;
+  top: 91px;
+  width: 65px;
+  height: 31px;
+  color: red;
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}

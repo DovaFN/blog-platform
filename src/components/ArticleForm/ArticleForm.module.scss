@@ -1,0 +1,153 @@
+@import '../../fonts/fonts.scss';
+
+.container {
+  display: grid;
+  position: relative;
+  width: 938px;
+  margin: 34px auto;
+  background-color: white;
+  color: #262626;
+  padding: 48px 33px;
+  font-family: 'Roboto-regular';
+  font-size: 14px;
+  box-shadow:
+    0px 0.61px 2.93px 0px rgba(0, 0, 0, 0.0197),
+    0px 1.46px 7.05px 0px rgba(0, 0, 0, 0.0283),
+    0px 2.75px 13.27px 0px rgba(0, 0, 0, 0.035),
+    0px 4.91px 23.68px 0px rgba(0, 0, 0, 0.0417),
+    0px 9.19px 44.28px 0px rgba(0, 0, 0, 0.0503),
+    0px 22px 106px 0px rgba(0, 0, 0, 0.07);
+
+  border-radius: 6px;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: center;
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-rows: 22px 40px;
+  font-weight: 400;
+  margin-top: 21px;
+}
+
+.input {
+  color: rgba(0, 0, 0, 0.75);
+
+  outline: 0;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.input::placeholder {
+  color: #d9d9d9;
+}
+
+.submit {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+
+  width: 319px;
+}
+
+.input-text {
+  height: 168px;
+  margin-bottom: 5px;
+  font-family: 'Roboto-regular';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  resize: none;
+}
+
+.inputContainer-text {
+  display: grid;
+  grid-template-rows: 22px 168px;
+  font-weight: 400;
+  margin-top: 21px;
+}
+
+.tag {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  width: 300px;
+  height: 40px;
+  border-radius: 4px;
+  padding: 8px 12px;
+  border: 1px solid #d9d9d9;
+  outline: 0;
+  // margin-top: 5px;
+}
+
+.tag::placeholder {
+  color: #d9d9d9;
+}
+
+.deleTag {
+  width: 120px;
+  height: 40px;
+  color: #f5222d;
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 8px 36px;
+}
+
+.addTag {
+  position: absolute;
+  bottom: 0;
+  left: 453px;
+  width: 120px;
+  height: 40px;
+  color: #1890ff;
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 8px 30px;
+}
+
+.tagContainer {
+  display: flex;
+  column-gap: 17px;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.tags {
+  margin-top: 21px;
+  position: relative;
+}
+
+.footer {
+  display: flex;
+  row-gap: 8px;
+  margin-top: 21px;
+  width: 319px;
+}
+
+.error {
+  color: red;
+}
+
+.succeed {
+  color: green;
+  margin: 20px 0;
+  font-size: 18px;
+}

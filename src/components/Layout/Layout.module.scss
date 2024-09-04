@@ -1,0 +1,90 @@
+@import 'inter-ui/inter.css';
+
+.header {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+  gap: 19px;
+  background-color: white;
+  padding: 0 22px;
+  * {
+    font-size: 18px;
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 28px;
+    font-weight: 500;
+    font-family: 'Inter', 'system-ui';
+  }
+}
+
+.title {
+  margin-right: auto;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.signIn {
+  width: 84px;
+  height: 35px;
+  display: flex;
+  color: rgba(0, 0, 0, 0.85);
+  span {
+    margin: auto 0;
+  }
+}
+
+.signUp {
+  border: 1px solid rgba(82, 196, 26, 1);
+  border-radius: 5px;
+  width: 109px;
+  height: 51px;
+  display: flex;
+  span {
+    color: rgba(82, 196, 26, 1);
+    margin: auto;
+  }
+}
+
+.logOut {
+  border: 1px solid rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  width: 109px;
+  height: 51px;
+  display: flex;
+  margin-left: 9px;
+  font-size: 18px;
+  line-height: 28px;
+  & :hover {
+    cursor: pointer;
+  }
+  span {
+    color: rgba(0, 0, 0, 0.75);
+    margin: auto;
+  }
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-color: white;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 12px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.newArticle {
+  display: flex;
+  width: 112.23px;
+  height: 31.1px;
+  border-radius: 5px;
+  color: #52c41a;
+  border: 1px solid;
+  padding: 4px 9.5px;
+  font-size: 14px;
+  margin-right: 8px;
+  line-height: 22px;
+}

@@ -1,0 +1,104 @@
+.item {
+  background-color: white;
+  padding: 15px;
+  padding-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  max-width: 938px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.title {
+  color: #1890ff;
+  font-size: 20px;
+  line-height: 28px;
+  max-width: 400px;
+  max-height: 28px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 22px;
+  height: 22px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.left {
+  display: grid;
+  grid-template-rows: 28px 20px 45px;
+  row-gap: 4px;
+}
+
+.tag {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  font-weight: 400;
+  border: 1px solid;
+  height: 20px;
+  padding: 2px 5px;
+  border-radius: 2px;
+  max-height: 20px;
+  max-width: 682px;
+  overflow-wrap: anywhere;
+}
+
+.wrap {
+  list-style: none;
+  text-indent: 0;
+}
+
+.tagsList {
+  display: flex;
+  column-gap: 8px;
+  max-width: 400px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  font-size: 12px;
+  line-height: 22px;
+  max-width: 682px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.right {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 12px;
+}
+
+.date {
+  font-size: 12px;
+  line-height: 22px;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.name {
+  font-size: 18px;
+  line-height: 28px;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+}

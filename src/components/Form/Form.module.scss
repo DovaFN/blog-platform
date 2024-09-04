@@ -1,0 +1,138 @@
+@import '../../fonts/fonts.scss';
+
+.container {
+  display: grid;
+  position: relative;
+  width: 384px;
+  margin: 59px auto;
+  background-color: white;
+  color: #262626;
+  padding: 48px 33px;
+  font-family: 'Roboto-regular';
+  font-size: 14px;
+  box-shadow:
+    0px 0.61px 2.93px 0px rgba(0, 0, 0, 0.0197),
+    0px 1.46px 7.05px 0px rgba(0, 0, 0, 0.0283),
+    0px 2.75px 13.27px 0px rgba(0, 0, 0, 0.035),
+    0px 4.91px 23.68px 0px rgba(0, 0, 0, 0.0417),
+    0px 9.19px 44.28px 0px rgba(0, 0, 0, 0.0503),
+    0px 22px 106px 0px rgba(0, 0, 0, 0.07);
+
+  border-radius: 6px;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: center;
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-rows: 22px 40px;
+  font-weight: 550;
+  margin-top: 12px;
+}
+
+.input {
+  color: rgba(0, 0, 0, 0.75);
+  &::placeholder {
+    color: rgba(191, 191, 191, 1);
+  }
+  outline: 1px solid #d9d9d9;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.form {
+  margin-top: 9px;
+}
+
+.checkboxText {
+  position: absolute;
+  width: 254px;
+  bottom: -21px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #595959;
+}
+
+.checkboxText::before {
+  position: absolute;
+  content: '';
+  width: 320px;
+  height: 1px;
+  top: -8px;
+  left: -25px;
+  background-color: #e8e8e8;
+}
+
+.checkBox {
+  margin-top: 9px;
+}
+
+.submit {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+}
+
+.footer {
+  display: grid;
+  row-gap: 8px;
+  color: #8c8c8c;
+  margin-top: 21px;
+}
+
+.redirect {
+  text-align: center;
+}
+
+.link {
+  color: #1890ff;
+}
+
+.link:active {
+  color: #1890ff;
+}
+
+.checkBoxWrapper {
+  position: relative;
+  margin-top: 32px;
+  margin-bottom: 25px;
+}
+
+.error {
+  color: #f5222d;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.requiredErr {
+  position: absolute;
+  bottom: -41px;
+  color: #f5222d;
+  left: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.succeed {
+  color: green;
+  font-size: 18px;
+}
+
+.failedError {
+  color: #f5222d;
+  font-size: 18px;
+}

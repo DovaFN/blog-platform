@@ -1,0 +1,19 @@
+@import 'inter-ui/inter.css';
+
+.list {
+  width: 938px;
+  margin: 26px auto;
+  display: grid;
+  grid-template-rows: 140px 140px 140px 140px 140px;
+  row-gap: 26px;
+  color: rgba(0, 0, 0, 0.75);
+  * {
+    font-family: 'Inter', 'system-ui';
+  }
+}
+
+.list-item {
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+  list-style-type: none;
+  text-indent: 0;
+}
