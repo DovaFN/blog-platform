@@ -1,1 +1,1 @@
-https://blog-platform-gamma-gold.vercel.app/articles
+https://blog-platform-gamma-gold.vercel.app
