@@ -50,10 +50,11 @@
   font-weight: 400;
   border: 1px solid;
   height: 20px;
-  padding: 2px 5px;
+  padding: 2px 0.35rem;
   border-radius: 2px;
   max-height: 20px;
   max-width: 682px;
+
   overflow-wrap: anywhere;
 }
 
@@ -75,7 +76,7 @@
   line-height: 22px;
   max-width: 682px;
   overflow: hidden;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .right {
@@ -101,4 +102,5 @@
 .avatar {
   width: 46px;
   height: 46px;
+  font-size: 14px;
 }

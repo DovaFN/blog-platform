@@ -70,7 +70,7 @@ function ArticlesItem(props) {
           <header className={classnames.name}>{username}</header>
           <span className={classnames.date}>{date}</span>
         </div>
-        <img className={classnames.avatar} src={image || profileImg} alt="" />
+        <img className={classnames.avatar} src={image || profileImg} alt="Avatar" />
       </div>
     </div>
   )
