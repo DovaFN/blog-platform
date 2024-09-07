@@ -1,5 +1,7 @@
 /* eslint-disable no-return-assign */
 import { useMemo } from 'react'
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 
 import { NewArticlePageOptions as inputsOptions } from '../validatioRules/rules'
 import { postArticle } from '../../reducers/articlesReducer'
@@ -7,6 +9,8 @@ import { createInput } from '../../utilities/functions'
 import ArticleForm from '../../components/ArticleForm/ArticleForm'
 
 function NewArticlePage() {
+  const { singleArticle, succeedMsg } = useSelector((state) => state.rootReducer.articles)
+
   const page = useMemo(
     () => ({
       inputArr: [
@@ -22,6 +26,11 @@ function NewArticlePage() {
     }),
     []
   )
+
+  if (succeedMsg) {
+    const { slug } = singleArticle
+    return <Navigate to={`/articles/${slug}`} />
+  }
 
   return <ArticleForm {...page} />
 }

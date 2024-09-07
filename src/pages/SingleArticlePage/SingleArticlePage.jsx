@@ -41,7 +41,7 @@ function SingleArticlePage() {
             <ErrorMessage message={errorMsg} />
           )}
         </div>
-        <ArticleBody markdown={markdown} />
+        {succeedLoaded && <ArticleBody markdown={markdown} />}
       </div>
     )
   }

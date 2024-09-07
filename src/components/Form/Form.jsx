@@ -6,14 +6,17 @@ import { Checkbox, Button, ConfigProvider } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { clearSucceedMsg } from '../../reducers/authReducer'
+import Loader from '../Loader/Loader'
 
 import classnames from './Form.module.scss'
 
 function Form({ inputArr, link = {}, header, submitText, inputsOptions, dispatchFn, defaultValues }) {
   const dispatch = useDispatch()
   const [checked, setChecked] = useState(true)
+
   const { errorMessage, succeedMsg } = useSelector((state) => state.rootReducer.auth)
   const { username } = useSelector((state) => state.rootReducer.auth.user)
+  const { serverErrors, loading } = useSelector((state) => state.rootReducer.auth)
   const location = useLocation()
 
   const {
@@ -21,6 +24,7 @@ function Form({ inputArr, link = {}, header, submitText, inputsOptions, dispatch
     handleSubmit,
     formState: { errors },
     getValues,
+    setError,
   } = useForm({ mode: 'onChange', reValidateMode: 'onChange', defaultValues })
 
   const onSubmit = (data) => {
@@ -30,8 +34,19 @@ function Form({ inputArr, link = {}, header, submitText, inputsOptions, dispatch
   }
 
   useEffect(() => {
+    const entries = Object.entries(serverErrors)
+    entries.forEach((el) => {
+      setError(el[0], { message: el[1] })
+    })
+  }, [serverErrors])
+
+  useEffect(() => {
     setTimeout(() => dispatch(clearSucceedMsg()), 3000)
   }, [succeedMsg])
+
+  if (loading) {
+    return <Loader />
+  }
 
   if (username && location.pathname !== '/profile') {
     return <Navigate to="/" />

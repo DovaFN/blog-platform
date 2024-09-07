@@ -24,6 +24,7 @@
     "jsx-a11y/label-has-associated-control": 0,
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
+    "no-param-reassign": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "indent": "off",
     "prettier/prettier": [

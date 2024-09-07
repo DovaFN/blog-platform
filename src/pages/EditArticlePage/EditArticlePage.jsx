@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
+
 import ArticleForm from '../../components/ArticleForm/ArticleForm'
 import useArticle from '../../hooks/useArticle'
 import { EditArticlePageOptions as inputsOptions } from '../validatioRules/rules'
@@ -7,7 +10,10 @@ import { createInput, uniqName } from '../../utilities/functions'
 function EditArticlePage() {
   const singleArticle = useArticle()
 
-  const { title, description, body, tagList } = singleArticle
+  const { username: currentUser } = useSelector((state) => state.rootReducer.auth.user)
+
+  const { title, description, body, tagList, author, slug } = singleArticle
+  const { username } = author
   const defaultInputs = { title, description, body }
 
   const tagsArr =
@@ -34,6 +40,10 @@ function EditArticlePage() {
     dispatchFn: updateArticle,
     defaultValues,
     tagsArr,
+  }
+
+  if (currentUser !== username) {
+    return <Navigate to={`/articles/${slug}`} />
   }
 
   return <ArticleForm {...page} />

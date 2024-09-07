@@ -6,6 +6,7 @@ import { ConfigProvider, Button } from 'antd'
 import classNames from 'classnames'
 
 import { uniqName } from '../../utilities/functions'
+import Loader from '../Loader/Loader'
 import { clearSucceedMsg } from '../../reducers/articlesReducer'
 
 import classnames from './ArticleForm.module.scss'
@@ -14,7 +15,8 @@ function ArticleForm({ header, submitText, inputArr, dispatchFn, defaultValues, 
   const dispatch = useDispatch()
 
   const [tagsArray, setTagsArray] = useState(tagsArr)
-  const { errorMsg, succeedMsg } = useSelector((state) => state.rootReducer.articles)
+  const { errorMsg, loading, succeedMsg } = useSelector((state) => state.rootReducer.articles)
+
   const { slug } = useParams()
 
   useEffect(() => {
@@ -43,6 +45,10 @@ function ArticleForm({ header, submitText, inputArr, dispatchFn, defaultValues, 
     const tagsCopy = tagsArray.slice()
     tagsCopy.push({ name: `${uniqName()}`, value: '' })
     setTagsArray(tagsCopy)
+  }
+
+  if (loading) {
+    return <Loader />
   }
 
   return (

@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
@@ -22,7 +21,8 @@ const createUser = createAsyncThunk('auth/createUser', async (data) => {
       return res
     }
     if (!response.ok) {
-      throw new Error('Add valid data and try again.')
+      const res = await response.json()
+      throw new Error(JSON.stringify(res.errors))
     }
   } catch (err) {
     throw new Error(err)
@@ -56,7 +56,8 @@ const updateUser = createAsyncThunk('auth/updateUser', async (data) => {
       return res
     }
     if (!response.ok) {
-      throw new Error('Add valid data and try again.')
+      const res = await response.json()
+      throw new Error(JSON.stringify(res.errors))
     }
   } catch (err) {
     throw new Error(err)
@@ -81,7 +82,8 @@ const loginUser = createAsyncThunk('auth/loginUser', async (data) => {
       return res
     }
     if (!response.ok) {
-      throw new Error('Add valid data and try again.')
+      const res = await response.json()
+      throw new Error(JSON.stringify(res.errors))
     }
   } catch (err) {
     throw new Error(err)
@@ -96,6 +98,7 @@ const initState = {
   loading: false,
   user: (localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))) || { username: '', email: '' },
   succeedMsg: '',
+  serverErrors: '',
 }
 
 const authSlice = createSlice({
@@ -114,6 +117,7 @@ const authSlice = createSlice({
       state.authError = false
       state.errorMessage = ''
       state.succeedMsg = ''
+      state.serverErrors = ''
     },
   },
   extraReducers: (builder) => {
@@ -132,12 +136,13 @@ const authSlice = createSlice({
       localStorage.setItem('user', JSON.stringify(state.user))
     })
     builder.addCase(loginUser.rejected, (state, action) => {
+      const { message } = action.error
       state.loading = false
       state.authError = true
-      if (action.error.message[0] === 'A') {
-        state.errorMessage = `Action failed, ${action.error.message}`
+      if (message[0] !== 'T') {
+        state.errorMessage = 'email of password is invalid'
       } else {
-        state.errorMessage = 'Action failed, check your internet connection and try again'
+        state.errorMessage = message
       }
     })
     builder.addCase(createUser.pending, (state, action) => {
@@ -153,12 +158,14 @@ const authSlice = createSlice({
       localStorage.setItem('user', JSON.stringify(state.user))
     })
     builder.addCase(createUser.rejected, (state, action) => {
+      const { message } = action.error
       state.loading = false
       state.authError = true
-      if (action.error.message[0] === 'A') {
-        state.errorMessage = `Action failed, ${action.error.message}`
+      if (message[0] !== 'T') {
+        const newErr = message.slice(7)
+        state.serverErrors = JSON.parse(newErr)
       } else {
-        state.errorMessage = 'Action failed, check your internet connection and try again'
+        state.errorMessage = message
       }
     })
     builder.addCase(updateUser.pending, (state, action) => {
@@ -176,12 +183,14 @@ const authSlice = createSlice({
       state.succeedMsg = 'Successfully Updated'
     })
     builder.addCase(updateUser.rejected, (state, action) => {
+      const { message } = action.error
       state.loading = false
       state.authError = true
-      if (action.error.message[0] === 'A') {
-        state.errorMessage = `Action failed, ${action.error.message}`
+      if (message[0] !== 'T') {
+        const newErr = message.slice(7)
+        state.serverErrors = JSON.parse(newErr)
       } else {
-        state.errorMessage = 'Action failed, check your internet connection and try again'
+        state.errorMessage = message
       }
     })
   },
@@ -190,5 +199,8 @@ const authSlice = createSlice({
 const { setRedirect, clearSucceedMsg, logOut, resetAuth } = authSlice.actions
 
 export { createUser, loginUser, setRedirect, clearSucceedMsg, updateUser, logOut, resetAuth }
+
+export const selectAuthState = (state) => state.rootReducer.auth
+export const selectUsername = (state) => state.rootReducer.auth.user.username
 
 export default authSlice

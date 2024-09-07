@@ -1,13 +1,42 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
-import { current, createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { current, createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
+
+// const getInitialState = () => {
+//   let storageSingleArticles = localStorage.getItem('singleArticle')
+//   if (storageSingleArticles) {
+//     storageSingleArticles = JSON.parse(storageSingleArticles)
+//   }
+//   return {
+//     articles: [''],
+//     loading: false,
+//     totalPages: '',
+//     hasError: false,
+//     succeedMsg: ''
+//     singleArticle: (storageSingleArticles.length && storageSingleArticles) || {
+//   }
+// }
+
+// console.log(getInitialState())
 
 const initState = {
-  articles: [],
+  articles: '',
   loading: false,
   totalPages: '',
   hasError: false,
-  singleArticle: localStorage.getItem('singleArticle') ? JSON.parse(localStorage.getItem('singleArticle')) : '',
+  singleArticle: localStorage.getItem('singleArticle')
+    ? JSON.parse(localStorage.getItem('singleArticle'))
+    : {
+        author: { username: '', image: '' },
+        body: '',
+        createdAt: '',
+        description: '',
+        favorited: false,
+        favoritesCount: 0,
+        slug: '',
+        tagList: [''],
+        title: '',
+      },
   succeedMsg: '',
   errorMsg: '',
 }
@@ -75,7 +104,6 @@ const postArticle = createAsyncThunk('articles/postArticle', async (data) => {
     })
     if (response.ok) {
       const jsonResponse = await response.json()
-
       return jsonResponse
     }
     if (!response.ok) {
@@ -195,6 +223,13 @@ const articlesSlice = createSlice({
       state.errorMsg = ''
       state.succeedMsg = ''
     },
+    resetSingleArticle: (state, action) => {
+      localStorage.removeItem('singleArticle')
+      state.singleArticle = initState.singleArticle
+    },
+  },
+  selectors: {
+    selectSuccedMsg: createSelector((state) => state.succeedMsg),
   },
   extraReducers: (builder) => {
     builder.addCase(getArticles.pending, (state, action) => {
@@ -213,10 +248,13 @@ const articlesSlice = createSlice({
       state.hasError = true
     })
     builder.addCase(updateArticle.pending, (state, action) => {
+      localStorage.removeItem('singleArticle')
+      state.singleArticle = initState.singleArticle
       state.loading = true
     })
     builder.addCase(updateArticle.fulfilled, (state, action) => {
       state.singleArticle = action.payload.article
+      localStorage.setItem('singleArticle', JSON.stringify(action.payload.article))
       state.succeedMsg = 'Successfully Updated'
       state.loading = false
     })
@@ -240,7 +278,9 @@ const articlesSlice = createSlice({
       state.loading = true
     })
     builder.addCase(postArticle.fulfilled, (state, action) => {
+      const { article } = action.payload
       state.succeedMsg = 'Successfully Created'
+      state.singleArticle = article
       state.loading = false
     })
     builder.addCase(postArticle.rejected, (state, action) => {
@@ -294,7 +334,7 @@ const articlesSlice = createSlice({
   },
 })
 
-const { clearSucceedMsg, resetArticles } = articlesSlice.actions
+const { clearSucceedMsg, resetArticles, resetSingleArticle } = articlesSlice.actions
 
 export {
   getArticles,
@@ -306,6 +346,11 @@ export {
   resetArticles,
   likeArticle,
   dislikeArticle,
+  resetSingleArticle,
 }
+
+export const selectArticlesState = (state) => state.rootReducer.articles
+export const selectAuthorName = (state) => state.rootReducer.articles.singleArticle.author.username
+export const selectSlug = (state) => state.rootReducer.articles.singleArticle.slug
 
 export default articlesSlice
