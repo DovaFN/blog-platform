@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Checkbox, Button, ConfigProvider } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { clearSucceedMsg } from '../../reducers/authReducer'
+import { clearSucceedMsg, selectAuthState, selectUsername } from '../../reducers/authReducer'
 import Loader from '../Loader/Loader'
 
 import classnames from './Form.module.scss'
@@ -14,9 +14,9 @@ function Form({ inputArr, link = {}, header, submitText, inputsOptions, dispatch
   const dispatch = useDispatch()
   const [checked, setChecked] = useState(true)
 
-  const { errorMessage, succeedMsg } = useSelector((state) => state.rootReducer.auth)
-  const { username } = useSelector((state) => state.rootReducer.auth.user)
-  const { serverErrors, loading } = useSelector((state) => state.rootReducer.auth)
+  const { errorMessage, succeedMsg, serverErrors, loading } = useSelector(selectAuthState)
+  const username = useSelector(selectUsername)
+
   const location = useLocation()
 
   const {

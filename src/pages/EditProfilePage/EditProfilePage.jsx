@@ -2,12 +2,12 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
 import { EditProfilePageOptions as inputsOptions } from '../validatioRules/rules'
-import { updateUser } from '../../reducers/authReducer'
+import { updateUser, selectCurrentUser } from '../../reducers/authReducer'
 import { createInput } from '../../utilities/functions'
 import Form from '../../components/Form/Form'
 
 function EditProfilePage() {
-  const { username, email, image } = useSelector((state) => state.rootReducer.auth.user)
+  const { username, email, image } = useSelector(selectCurrentUser)
 
   const page = useMemo(
     () => ({

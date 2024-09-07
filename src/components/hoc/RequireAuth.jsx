@@ -1,12 +1,13 @@
-import { useLocation, Navigate } from 'react-router-dom'
+import { useLocation, Navigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-function RequireAuth({ children }) {
-  const location = useLocation()
-  const { username } = useSelector((state) => state.rootReducer.auth.user)
-  const { slug } = useSelector((state) => state.rootReducer.articles.singleArticle)
+import { selectUsername } from '../../reducers/authReducer'
 
-  if (!username) {
+function RequireAuth({ children }) {
+  const userName = useSelector(selectUsername)
+  const { slug } = useParams()
+
+  if (!userName) {
     if (slug) {
       return <Navigate to={`/articles/${slug}`} />
     }

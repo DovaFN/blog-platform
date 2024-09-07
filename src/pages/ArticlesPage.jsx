@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
 import Loader from '../components/Loader/Loader'
-import { getArticles } from '../reducers/articlesReducer'
+import { getArticles, selectArticlesState } from '../reducers/articlesReducer'
+import { selectUsername } from '../reducers/authReducer'
 import Articles from '../components/Articles/Articles'
 import Paginate from '../components/Paginate/Paginate'
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage'
 
 function ArticlesPage() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const { username } = useSelector((state) => state.rootReducer.auth.user)
+  const userName = useSelector(selectUsername)
   const currentPage = searchParams.get('page')
 
   const dispatch = useDispatch()
-  const { hasError, loading, articles, totalPages, errorMsg } = useSelector((state) => state.rootReducer.articles)
+  const { hasError, loading, articles, totalPages, errorMsg } = useSelector(selectArticlesState)
 
   const onSetPage = (page = 1) => {
     const params = {
@@ -27,7 +28,7 @@ function ArticlesPage() {
 
   useEffect(() => {
     dispatch(getArticles(currentPage))
-  }, [currentPage, username])
+  }, [currentPage, userName])
 
   return (
     <>

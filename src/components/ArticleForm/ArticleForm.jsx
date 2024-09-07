@@ -7,7 +7,7 @@ import classNames from 'classnames'
 
 import { uniqName } from '../../utilities/functions'
 import Loader from '../Loader/Loader'
-import { clearSucceedMsg } from '../../reducers/articlesReducer'
+import { clearSucceedMsg, selectArticlesState } from '../../reducers/articlesReducer'
 
 import classnames from './ArticleForm.module.scss'
 
@@ -15,7 +15,7 @@ function ArticleForm({ header, submitText, inputArr, dispatchFn, defaultValues, 
   const dispatch = useDispatch()
 
   const [tagsArray, setTagsArray] = useState(tagsArr)
-  const { errorMsg, loading, succeedMsg } = useSelector((state) => state.rootReducer.articles)
+  const { errorMsg, loading, succeedMsg } = useSelector(selectArticlesState)
 
   const { slug } = useParams()
 

@@ -349,6 +349,7 @@ export {
 }
 
 export const selectArticlesState = (state) => state.rootReducer.articles
+export const selectSingleArticle = (state) => state.rootReducer.articles.singleArticle
 export const selectAuthorName = (state) => state.rootReducer.articles.singleArticle.author.username
 export const selectSlug = (state) => state.rootReducer.articles.singleArticle.slug
 

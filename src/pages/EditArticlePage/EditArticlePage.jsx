@@ -5,18 +5,20 @@ import ArticleForm from '../../components/ArticleForm/ArticleForm'
 import useArticle from '../../hooks/useArticle'
 import { EditArticlePageOptions as inputsOptions } from '../validatioRules/rules'
 import { updateArticle } from '../../reducers/articlesReducer'
+import { selectUsername } from '../../reducers/authReducer'
 import { createInput, uniqName } from '../../utilities/functions'
 
 function EditArticlePage() {
   const singleArticle = useArticle()
 
-  const { username: currentUser } = useSelector((state) => state.rootReducer.auth.user)
-  const { loading } = useSelector((state) => state.rootReducer.articles.loading)
+  const currentUser = useSelector(selectUsername)
+  const { slug } = useParams()
 
   const { title, description, body, tagList, author } = singleArticle
+
   const { username } = author
+
   const defaultInputs = { title, description, body }
-  const { slug } = useParams()
 
   const tagsArr =
     tagList && tagList.length

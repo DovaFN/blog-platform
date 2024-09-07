@@ -5,7 +5,7 @@ import Loader from '../Loader/Loader'
 
 import classnames from './Articles.module.scss'
 
-function Articles({ articles, loading, hasError }) {
+function Articles({ articles }) {
   const content =
     articles.length &&
     articles.map((item) => (

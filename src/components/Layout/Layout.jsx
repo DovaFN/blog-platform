@@ -1,14 +1,15 @@
 import { Outlet, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
 
 import profileImg from '../../icons/Rectangle 1.svg'
-import { logOut } from '../../reducers/authReducer'
+import { logOut, selectAvatar, selectUsername } from '../../reducers/authReducer'
 
 import classnames from './Layout.module.scss'
 
 function Layout() {
-  const { username, image } = useSelector((state) => state.rootReducer.auth.user)
+  const username = useSelector(selectUsername)
+  const image = useSelector(selectAvatar)
+
   const dispatch = useDispatch()
 
   const handleLogOut = () => {

@@ -8,12 +8,13 @@ import { format } from 'date-fns'
 import heartIcon from '../../icons/Vector.svg'
 import redHeartIcon from '../../icons/path4.svg'
 import profileImg from '../../icons/Rectangle 1.svg'
+import { selectUsername } from '../../reducers/authReducer'
 import { likeArticle, dislikeArticle } from '../../reducers/articlesReducer'
 
 import classnames from './ArticlesItem.module.scss'
 
 function ArticlesItem(props) {
-  const { username: currentUser } = useSelector((state) => state.rootReducer.auth.user)
+  const currentUsername = useSelector(selectUsername)
 
   const dispatch = useDispatch()
   const { title, description, author, tagList, createdAt, slug, disabled, favorited, favoritesCount } = props
@@ -23,7 +24,7 @@ function ArticlesItem(props) {
 
   const likesCounter = favoritesCount || 0
 
-  const isDisabledLikes = !currentUser
+  const isDisabledLikes = !currentUsername
   const handleLike = () => {
     if (isDisabledLikes) {
       alert('You have to login first')

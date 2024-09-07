@@ -3,19 +3,20 @@ import { Link, useParams, Navigate } from 'react-router-dom'
 import { Popconfirm } from 'antd'
 import Markdown from 'markdown-to-jsx'
 
-import { deleteArticle } from '../../reducers/articlesReducer'
+import { deleteArticle, selectArticlesState } from '../../reducers/articlesReducer'
 import Loader from '../../components/Loader/Loader'
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 import useArticle from '../../hooks/useArticle'
 import ArticlesItem from '../../components/ArticlesItem/ArticlesItem'
+import { selectUsername } from '../../reducers/authReducer'
 
 import classnames from './SingleArticlePage.module.scss'
 
 function SingleArticlePage() {
   const { slug } = useParams()
   const dispatch = useDispatch()
-  const { username: currentUsername } = useSelector((state) => state.rootReducer.auth.user)
-  const { loading, hasError, errorMsg } = useSelector((state) => state.rootReducer.articles)
+  const currentUsername = useSelector(selectUsername)
+  const { loading, hasError, errorMsg } = useSelector(selectArticlesState)
 
   const singleArticle = useArticle()
 

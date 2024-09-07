@@ -202,5 +202,6 @@ export { createUser, loginUser, setRedirect, clearSucceedMsg, updateUser, logOut
 
 export const selectAuthState = (state) => state.rootReducer.auth
 export const selectUsername = (state) => state.rootReducer.auth.user.username
-
+export const selectCurrentUser = (state) => state.rootReducer.auth.user
+export const selectAvatar = (state) => state.rootReducer.auth.user.image
 export default authSlice
