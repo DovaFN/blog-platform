@@ -248,11 +248,10 @@ const articlesSlice = createSlice({
       state.hasError = true
     })
     builder.addCase(updateArticle.pending, (state, action) => {
-      localStorage.removeItem('singleArticle')
-      state.singleArticle = initState.singleArticle
       state.loading = true
     })
     builder.addCase(updateArticle.fulfilled, (state, action) => {
+      localStorage.removeItem('singleArticle')
       state.singleArticle = action.payload.article
       localStorage.setItem('singleArticle', JSON.stringify(action.payload.article))
       state.succeedMsg = 'Successfully Updated'

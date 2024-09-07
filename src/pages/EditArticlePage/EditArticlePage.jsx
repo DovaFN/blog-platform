@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
 import ArticleForm from '../../components/ArticleForm/ArticleForm'
 import useArticle from '../../hooks/useArticle'
@@ -11,10 +11,12 @@ function EditArticlePage() {
   const singleArticle = useArticle()
 
   const { username: currentUser } = useSelector((state) => state.rootReducer.auth.user)
+  const { loading } = useSelector((state) => state.rootReducer.articles.loading)
 
-  const { title, description, body, tagList, author, slug } = singleArticle
+  const { title, description, body, tagList, author } = singleArticle
   const { username } = author
   const defaultInputs = { title, description, body }
+  const { slug } = useParams()
 
   const tagsArr =
     tagList && tagList.length
