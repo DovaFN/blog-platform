@@ -46,7 +46,7 @@ function ArticlesItem(props) {
     </li>
   ))
 
-  const date = format(new Date(Date.parse(createdAt)), 'MMMM dd, yyyy')
+  const date = format(new Date(Date.parse(createdAt)), 'MMMM dd, yyyy') || ' '
 
   return (
     <div className={classnames.item}>
