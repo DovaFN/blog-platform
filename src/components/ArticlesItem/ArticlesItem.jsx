@@ -48,7 +48,6 @@ function ArticlesItem(props) {
 
   const date = (createdAt && format(new Date(Date.parse(createdAt)), 'MMMM dd, yyyy')) || ' '
 
-  console.log(date)
   return (
     <div className={classnames.item}>
       <div className={classnames.left}>
